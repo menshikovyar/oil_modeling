@@ -5,8 +5,8 @@ import numpy as np
 def model(y, t, k1, k2, k3, k4, N1_in, N2_in, T, P, temperature_dependence):
     N1, N2, N3 = y
     if temperature_dependence:
-        A = 1.0  # Пример значения для параметра A
-        E_a = 10.0  # Пример значения для параметра E_a
+        A = 1.0
+        E_a = 10.0 
         k2 *= rate_constant(t, A, E_a)
         k4 *= rate_constant(t, A, E_a)
     dN1_dt = k1 * (N1_in - N1) - k2 * N2 * T * t
@@ -17,5 +17,6 @@ def model(y, t, k1, k2, k3, k4, N1_in, N2_in, T, P, temperature_dependence):
 
 
 def rate_constant(t, A, E_a, R=8.314):
-    T = t + 273.15  # Преобразование температуры в Кельвины
+    # Преобразование температуры в Кельвины
+    T = t + 273.15 
     return A * np.exp(-E_a / (R * T))
